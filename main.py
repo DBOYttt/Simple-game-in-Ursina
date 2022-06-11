@@ -1,4 +1,5 @@
 from tkinter import Scale
+from turtle import position
 from ursina import *
 
 app = Ursina()
@@ -10,12 +11,18 @@ def update():
     player.x += held_keys['d'] * time.dt
     player.x -= held_keys['a'] * time.dt
 
+coppy = player.y
+
 def input(key):
     if key == 'space':
         player.y += 1
         invoke(setattr, player, 'y', player.y - 1, delay = .25)
+    if player.y == range(100):
+       player.y -= coppy - 3
 
-if player.position > 1:
-    player.position = Vec3(0,0,0)
+
+
+# if player.y == range(100):
+#     player.y -= coppy
 
 app.run() 
